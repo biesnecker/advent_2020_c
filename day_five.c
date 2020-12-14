@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdbool.h>
 
+#include "bitvector.h"
 #include "macros.h"
 
 static bool get_row_and_seat(const char *code, int *row, int *seat)
@@ -84,4 +85,46 @@ void day_five_solution(FILE *fp)
 
 void day_five_b_solution(FILE *fp)
 {
+    char buffer[16] = {0};
+    int row = 0;
+    int seat = 0;
+
+    bitvector *bv = bitvector_new(128 * 8);
+    if (bv == NULL)
+    {
+        FLOG("Couldn't create bit vector");
+    }
+
+    while (fgets(buffer, sizeof(buffer), fp) != NULL)
+    {
+        if (strlen(buffer) != 11)
+        {
+            // Sanity.
+            continue;
+        }
+        if (!get_row_and_seat(buffer, &row, &seat))
+        {
+            FLOG("Invalid code: %s", buffer);
+            goto cleanup;
+        }
+        int seat_code = (row * 8) + seat;
+        bitvector_set(bv, seat_code);
+    }
+
+    // Loop through, skipping the first and last seats. If we find a hole with both
+    // seats filled next to it then it will be ours.
+    for (int i = 1; i < (128 * 8) - 1; ++i)
+    {
+        if (
+            bitvector_check(bv, i - 1) &&
+            bitvector_check(bv, i + 1) &&
+            !bitvector_check(bv, i))
+        {
+            printf("We're at seat #%d\n", i);
+            goto cleanup;
+        }
+    }
+
+cleanup:
+    bitvector_free(bv);
 }
