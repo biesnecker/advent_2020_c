@@ -8,7 +8,8 @@ OBJS = \
 	day_one.o \
 	day_two.o \
 	day_three.o \
-	day_four.o
+	day_four.o \
+	day_five.o
 
 HEADERS = \
 	macros.h
