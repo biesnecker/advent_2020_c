@@ -5,32 +5,32 @@
 
 struct parse_state
 {
-    bool has_byr;
-    bool has_iyr;
-    bool has_eyr;
-    bool has_hgt;
-    bool has_hcl;
-    bool has_ecl;
-    bool has_pid;
-    bool has_cid;
+    bool has_valid_byr;
+    bool has_valid_iyr;
+    bool has_valid_eyr;
+    bool has_valid_hgt;
+    bool has_valid_hcl;
+    bool has_valid_ecl;
+    bool has_valid_pid;
+    bool has_valid_cid;
 };
 
-bool is_valid_state(struct parse_state *state)
+static bool is_valid_state(struct parse_state *state)
 {
     if (state == NULL)
     {
         return false;
     }
-    return state->has_byr &&
-           state->has_iyr &&
-           state->has_eyr &&
-           state->has_hgt &&
-           state->has_hcl &&
-           state->has_ecl &&
-           state->has_pid;
+    return state->has_valid_byr &&
+           state->has_valid_iyr &&
+           state->has_valid_eyr &&
+           state->has_valid_hgt &&
+           state->has_valid_hcl &&
+           state->has_valid_ecl &&
+           state->has_valid_pid;
 }
 
-bool is_valid_field(const char *prefix, const char *s)
+static bool is_valid_field(const char *prefix, const char *s)
 {
     if (strlen(s) < 5 || strlen(prefix) < 3)
     {
@@ -42,22 +42,8 @@ bool is_valid_field(const char *prefix, const char *s)
            s[3] == ':';
 }
 
-int main(int argc, char **argv)
+void day_four_solution(FILE *fp)
 {
-    if (argc != 2)
-    {
-        fprintf(stderr, "Usage: %s <input file>\n", argv[0]);
-        return EXIT_FAILURE;
-    }
-
-    const char *filename = argv[1];
-
-    FILE *fp = fopen(filename, "r");
-    if (fp == NULL)
-    {
-        fprintf(stderr, "Unable to open file: %s\n", filename);
-        return EXIT_FAILURE;
-    }
 
     char buffer[512] = {0};
     struct parse_state *state = NULL;
@@ -84,37 +70,37 @@ int main(int argc, char **argv)
         char *found = strtok(buffer, " ");
         while (found)
         {
-            if (!state->has_byr && is_valid_field("byr", found))
+            if (!state->has_valid_byr && is_valid_field("byr", found))
             {
-                state->has_byr = true;
+                state->has_valid_byr = true;
             }
-            else if (!state->has_iyr && is_valid_field("iyr", found))
+            else if (!state->has_valid_iyr && is_valid_field("iyr", found))
             {
-                state->has_iyr = true;
+                state->has_valid_iyr = true;
             }
-            else if (!state->has_eyr && is_valid_field("eyr", found))
+            else if (!state->has_valid_eyr && is_valid_field("eyr", found))
             {
-                state->has_eyr = true;
+                state->has_valid_eyr = true;
             }
-            else if (!state->has_hgt && is_valid_field("hgt", found))
+            else if (!state->has_valid_hgt && is_valid_field("hgt", found))
             {
-                state->has_hgt = true;
+                state->has_valid_hgt = true;
             }
-            else if (!state->has_hcl && is_valid_field("hcl", found))
+            else if (!state->has_valid_hcl && is_valid_field("hcl", found))
             {
-                state->has_hcl = true;
+                state->has_valid_hcl = true;
             }
-            else if (!state->has_ecl && is_valid_field("ecl", found))
+            else if (!state->has_valid_ecl && is_valid_field("ecl", found))
             {
-                state->has_ecl = true;
+                state->has_valid_ecl = true;
             }
-            else if (!state->has_pid && is_valid_field("pid", found))
+            else if (!state->has_valid_pid && is_valid_field("pid", found))
             {
-                state->has_pid = true;
+                state->has_valid_pid = true;
             }
-            else if (!state->has_cid && is_valid_field("cid", found))
+            else if (!state->has_valid_cid && is_valid_field("cid", found))
             {
-                state->has_cid = true;
+                state->has_valid_cid = true;
             }
 
             // Get the next token.
@@ -133,8 +119,4 @@ int main(int argc, char **argv)
     }
 
     printf("Solution: %d\n", valid);
-
-    fclose(fp);
-
-    return EXIT_SUCCESS;
 }
