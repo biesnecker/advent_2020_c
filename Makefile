@@ -1,6 +1,6 @@
 CC=gcc
 ERRFLAGS=-Werror -Wall -Wextra -Wstrict-prototypes
-CFLAGS=-std=c11 -O2 $(ERRFLAGS)
+CFLAGS=-std=c11 -O2 -march=native $(ERRFLAGS)
 BINARY_NAME=advent_2020_c
 
 OBJS = \
@@ -10,11 +10,12 @@ OBJS = \
 	day_two.o \
 	day_three.o \
 	day_four.o \
-	day_five.o
+	day_five.o \
+	day_six.o
 
 HEADERS = \
 	bitvector.h \
-	macros.h
+	macros.h \
 
 %.o: %.c $(HEADERS)
 	$(CC) -c -o $@ $< $(CFLAGS)
