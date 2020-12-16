@@ -154,6 +154,14 @@ static void create_graph(FILE *fp, node *hashes)
     }
 }
 
+void free_nodes(node *hashes)
+{
+    for (int i = 0; i < HASH_TABLE_SIZE; ++i)
+    {
+        node_free(&hashes[i]);
+    }
+}
+
 void day_seven_solution(FILE *fp)
 {
     node hashes[HASH_TABLE_SIZE] = {0};
@@ -163,7 +171,6 @@ void day_seven_solution(FILE *fp)
 
     node *current = NULL;
     int stack_size = 1;
-    int stack_capacity = 500;
     stack[0] = find_or_insert_node(hashes, "shiny gold");
 
     int count = -1;
@@ -187,6 +194,8 @@ void day_seven_solution(FILE *fp)
     }
 
     printf("Solution: %d\n", count);
+
+    free_nodes(hashes);
 }
 
 static long bag_size(node *bag)
@@ -215,4 +224,6 @@ void day_seven_b_solution(FILE *fp)
     int count = bag_size(current) - 1;
 
     printf("Solution: %d\n", count);
+
+    free_nodes(hashes);
 }
