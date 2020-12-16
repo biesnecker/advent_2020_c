@@ -8,9 +8,14 @@ struct _bitvector
     uint8_t bytes[];
 };
 
+static size_t _capacity_in_bytes(size_t bits)
+{
+    return (bits / 8) + (bits % 8 > 0);
+}
+
 bitvector *bitvector_new(size_t capacity)
 {
-    size_t capacity_bytes = (capacity / 8) + (capacity % 8 > 0);
+    size_t capacity_bytes = _capacity_in_bytes(capacity);
     size_t sz = sizeof(bitvector) + (sizeof(uint8_t) * capacity_bytes);
     bitvector *b = calloc(sz, 1);
     if (b != NULL)
@@ -52,4 +57,13 @@ bool bitvector_check(const bitvector *b, size_t index)
         return false;
     }
     return b->bytes[byte_index] & BIT_MASK(index);
+}
+
+void bitvector_clear(bitvector *b)
+{
+    size_t n_bytes = _capacity_in_bytes(b->capacity);
+    for (size_t i = 0; i < n_bytes; ++i)
+    {
+        b->bytes[i] = 0;
+    }
 }

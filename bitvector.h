@@ -14,4 +14,6 @@ void bitvector_set(bitvector *b, size_t index);
 
 bool bitvector_check(const bitvector *b, size_t index);
 
+void bitvector_clear(bitvector *b);
+
 #endif

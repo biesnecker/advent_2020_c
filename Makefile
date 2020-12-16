@@ -1,5 +1,5 @@
 CC=gcc
-ERRFLAGS=-Werror -Wall -Wextra -Wno-unused-function -Wno-unused-variable -Wstrict-prototypes
+ERRFLAGS=-Werror -Wall -Wextra -Wstrict-prototypes
 CFLAGS=-std=c11 -O2 -march=native $(ERRFLAGS)
 BINARY_NAME=advent_2020_c
 
@@ -13,7 +13,8 @@ OBJS = \
 	day_four.o \
 	day_five.o \
 	day_six.o \
-	day_seven.o
+	day_seven.o \
+	day_eight.o
 
 HEADERS = \
 	bitvector.h \
