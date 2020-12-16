@@ -145,7 +145,7 @@ static void process_line(node *hashes, char *line)
     }
 }
 
-void create_graph(FILE *fp, node *hashes)
+static void create_graph(FILE *fp, node *hashes)
 {
     char buffer[256] = {0};
     while (fgets(buffer, sizeof(buffer), fp) != NULL)
@@ -189,7 +189,7 @@ void day_seven_solution(FILE *fp)
     printf("Solution: %d\n", count);
 }
 
-long bag_size(node *bag)
+static long bag_size(node *bag)
 {
     long total = 1;
     for (int i = 0; i < bag->edge_size; i++)
