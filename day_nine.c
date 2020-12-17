@@ -103,7 +103,7 @@ void day_nine_b_solution(FILE *fp)
             {
                 sum -= numbers[low_idx++];
             }
-            if (sum == target)
+            if (sum == target && low_idx < i)
             {
                 find_high_low_sum(numbers, low_idx, i);
                 return;
