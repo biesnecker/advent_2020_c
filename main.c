@@ -27,6 +27,8 @@ extern void day_ten_solution(FILE *);
 extern void day_ten_b_solution(FILE *);
 extern void day_eleven_solution(FILE *);
 extern void day_eleven_b_solution(FILE *);
+extern void day_twelve_solution(FILE *);
+extern void day_twelve_b_solution(FILE *);
 
 typedef struct _solution
 {
@@ -145,6 +147,16 @@ static solution solutions[] = {
         .puzzle_id = "day_eleven_b",
         .solution = &day_eleven_b_solution,
         "input/day_eleven_input.txt",
+    },
+    {
+        .puzzle_id = "day_twelve",
+        .solution = &day_twelve_solution,
+        "input/day_twelve_input.txt",
+    },
+    {
+        .puzzle_id = "day_twelve_b",
+        .solution = &day_twelve_b_solution,
+        "input/day_twelve_input.txt",
     }};
 
 static int n_solutions = sizeof(solutions) / sizeof(solutions[0]);

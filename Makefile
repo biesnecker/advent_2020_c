@@ -17,7 +17,8 @@ OBJS = \
 	day_eight.o \
 	day_nine.o \
 	day_ten.o \
-	day_eleven.o
+	day_eleven.o \
+	day_twelve.o
 
 HEADERS = \
 	bitvector.h \
