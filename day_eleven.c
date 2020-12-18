@@ -5,20 +5,10 @@
 
 #include "macros.h"
 
-#define MAX_DATA_LENGTH 9504
 #define MAX_ROWS 100
 #define MAX_COLS 100
 
 typedef char seating_chart[MAX_ROWS][MAX_COLS];
-
-#define IDX_COL_ROW(idx, cols, rows, col_var, row_var) \
-    do                                                 \
-    {                                                  \
-        (col_var) = (idx) % (cols);                    \
-        (row_var) = (idx) / (rows);                    \
-    } while (0)
-
-#define COL_ROW_IDX(col, row, cols) (((row) * (cols)) + (col))
 
 // Order: N NE E SE S SW W NW
 static const int col_offset[8] = {0, 1, 1, 1, 0, -1, -1, -1};
