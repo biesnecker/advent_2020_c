@@ -81,6 +81,20 @@ static entry *read_input(FILE *fp)
     return e;
 }
 
+static void release_entries(entry **entries)
+{
+    for (long i = 0; i < HASH_TABLE_SIZE; ++i)
+    {
+        entry *e = entries[i];
+        while (e)
+        {
+            entry *next = e->next;
+            free(e);
+            e = next;
+        }
+    }
+}
+
 static void play_game(FILE *fp, long rounds)
 {
     entry **entries = calloc(HASH_TABLE_SIZE, sizeof(entry *));
@@ -114,6 +128,7 @@ static void play_game(FILE *fp, long rounds)
         }
     }
     printf("Solution: %ld\n", last_num);
+    release_entries(entries);
 }
 
 void day_fifteen_solution(FILE *fp)
