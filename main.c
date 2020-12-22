@@ -5,38 +5,28 @@
 #include "macros.h"
 
 // Extern definitions of solution functions go here.
-extern void day_one_solution(FILE *);
-extern void day_one_b_solution(FILE *);
-extern void day_two_solution(FILE *);
-extern void day_two_b_solution(FILE *);
-extern void day_three_solution(FILE *);
-extern void day_three_b_solution(FILE *);
-extern void day_four_solution(FILE *);
-extern void day_four_b_solution(FILE *);
-extern void day_five_solution(FILE *);
-extern void day_five_b_solution(FILE *);
-extern void day_six_solution(FILE *);
-extern void day_six_b_solution(FILE *);
-extern void day_seven_solution(FILE *);
-extern void day_seven_b_solution(FILE *);
-extern void day_eight_solution(FILE *);
-extern void day_eight_b_solution(FILE *);
-extern void day_nine_solution(FILE *);
-extern void day_nine_b_solution(FILE *);
-extern void day_ten_solution(FILE *);
-extern void day_ten_b_solution(FILE *);
-extern void day_eleven_solution(FILE *);
-extern void day_eleven_b_solution(FILE *);
-extern void day_twelve_solution(FILE *);
-extern void day_twelve_b_solution(FILE *);
-extern void day_thirteen_solution(FILE *);
-extern void day_thirteen_b_solution(FILE *);
-extern void day_fourteen_solution(FILE *);
-extern void day_fourteen_b_solution(FILE *);
-extern void day_fifteen_solution(FILE *);
-extern void day_fifteen_b_solution(FILE *);
-extern void day_sixteen_solution(FILE *);
-extern void day_sixteen_b_solution(FILE *);
+
+#define FUNCTIONS_FOR_DAY(day_name)                \
+    extern void day_##day_name##_solution(FILE *); \
+    extern void day_##day_name##_b_solution(FILE *)
+
+FUNCTIONS_FOR_DAY(one);
+FUNCTIONS_FOR_DAY(two);
+FUNCTIONS_FOR_DAY(three);
+FUNCTIONS_FOR_DAY(four);
+FUNCTIONS_FOR_DAY(five);
+FUNCTIONS_FOR_DAY(six);
+FUNCTIONS_FOR_DAY(seven);
+FUNCTIONS_FOR_DAY(eight);
+FUNCTIONS_FOR_DAY(nine);
+FUNCTIONS_FOR_DAY(ten);
+FUNCTIONS_FOR_DAY(eleven);
+FUNCTIONS_FOR_DAY(twelve);
+FUNCTIONS_FOR_DAY(thirteen);
+FUNCTIONS_FOR_DAY(fourteen);
+FUNCTIONS_FOR_DAY(fifteen);
+FUNCTIONS_FOR_DAY(sixteen);
+FUNCTIONS_FOR_DAY(seventeen);
 
 typedef struct _solution
 {
@@ -45,167 +35,36 @@ typedef struct _solution
     const char *input_filename;
 } solution;
 
+#define SOLUTIONS_FOR_DAY(day_name)               \
+    {                                             \
+        .puzzle_id = "day_" #day_name,            \
+        .solution = &day_##day_name##_solution,   \
+        "input/day_" #day_name "_input.txt",      \
+    },                                            \
+    {                                             \
+        .puzzle_id = "day_" #day_name "_b",       \
+        .solution = &day_##day_name##_b_solution, \
+        "input/day_" #day_name "_input.txt",      \
+    }
+
 static solution solutions[] = {
-    {
-        .puzzle_id = "day_one",
-        .solution = &day_one_solution,
-        "input/day_one_input.txt",
-    },
-    {
-        .puzzle_id = "day_one_b",
-        .solution = &day_one_b_solution,
-        "input/day_one_input.txt",
-    },
-    {
-        .puzzle_id = "day_two",
-        .solution = &day_two_solution,
-        "input/day_two_input.txt",
-    },
-    {
-        .puzzle_id = "day_two_b",
-        .solution = &day_two_b_solution,
-        "input/day_two_input.txt",
-    },
-    {
-        .puzzle_id = "day_three",
-        .solution = &day_three_solution,
-        "input/day_three_input.txt",
-    },
-    {
-        .puzzle_id = "day_three_b",
-        .solution = &day_three_b_solution,
-        "input/day_three_input.txt",
-    },
-    {
-        .puzzle_id = "day_four",
-        .solution = &day_four_solution,
-        "input/day_four_input.txt",
-    },
-    {
-        .puzzle_id = "day_four_b",
-        .solution = &day_four_b_solution,
-        "input/day_four_input.txt",
-    },
-    {
-        .puzzle_id = "day_five",
-        .solution = &day_five_solution,
-        "input/day_five_input.txt",
-    },
-    {
-        .puzzle_id = "day_five_b",
-        .solution = &day_five_b_solution,
-        "input/day_five_input.txt",
-    },
-    {
-        .puzzle_id = "day_six",
-        .solution = &day_six_solution,
-        "input/day_six_input.txt",
-    },
-    {
-        .puzzle_id = "day_six_b",
-        .solution = &day_six_b_solution,
-        "input/day_six_input.txt",
-    },
-    {
-        .puzzle_id = "day_seven",
-        .solution = &day_seven_solution,
-        "input/day_seven_input.txt",
-    },
-    {
-        .puzzle_id = "day_seven_b",
-        .solution = &day_seven_b_solution,
-        "input/day_seven_input.txt",
-    },
-    {
-        .puzzle_id = "day_eight",
-        .solution = &day_eight_solution,
-        "input/day_eight_input.txt",
-    },
-    {
-        .puzzle_id = "day_eight_b",
-        .solution = &day_eight_b_solution,
-        "input/day_eight_input.txt",
-    },
-    {
-        .puzzle_id = "day_nine",
-        .solution = &day_nine_solution,
-        "input/day_nine_input.txt",
-    },
-    {
-        .puzzle_id = "day_nine_b",
-        .solution = &day_nine_b_solution,
-        "input/day_nine_input.txt",
-    },
-    {
-        .puzzle_id = "day_ten",
-        .solution = &day_ten_solution,
-        "input/day_ten_input.txt",
-    },
-    {
-        .puzzle_id = "day_ten_b",
-        .solution = &day_ten_b_solution,
-        "input/day_ten_input.txt",
-    },
-    {
-        .puzzle_id = "day_eleven",
-        .solution = &day_eleven_solution,
-        "input/day_eleven_input.txt",
-    },
-    {
-        .puzzle_id = "day_eleven_b",
-        .solution = &day_eleven_b_solution,
-        "input/day_eleven_input.txt",
-    },
-    {
-        .puzzle_id = "day_twelve",
-        .solution = &day_twelve_solution,
-        "input/day_twelve_input.txt",
-    },
-    {
-        .puzzle_id = "day_twelve_b",
-        .solution = &day_twelve_b_solution,
-        "input/day_twelve_input.txt",
-    },
-    {
-        .puzzle_id = "day_thirteen",
-        .solution = &day_thirteen_solution,
-        "input/day_thirteen_input.txt",
-    },
-    {
-        .puzzle_id = "day_thirteen_b",
-        .solution = &day_thirteen_b_solution,
-        "input/day_thirteen_input.txt",
-    },
-    {
-        .puzzle_id = "day_fourteen",
-        .solution = &day_fourteen_solution,
-        "input/day_fourteen_input.txt",
-    },
-    {
-        .puzzle_id = "day_fourteen_b",
-        .solution = &day_fourteen_b_solution,
-        "input/day_fourteen_input.txt",
-    },
-    {
-        .puzzle_id = "day_fifteen",
-        .solution = &day_fifteen_solution,
-        "input/day_fifteen_input.txt",
-    },
-    {
-        .puzzle_id = "day_fifteen_b",
-        .solution = &day_fifteen_b_solution,
-        "input/day_fifteen_input.txt",
-    },
-    {
-        .puzzle_id = "day_sixteen",
-        .solution = &day_sixteen_solution,
-        "input/day_sixteen_input.txt",
-    },
-    {
-        .puzzle_id = "day_sixteen_b",
-        .solution = &day_sixteen_b_solution,
-        "input/day_sixteen_input.txt",
-    }};
+    SOLUTIONS_FOR_DAY(one),
+    SOLUTIONS_FOR_DAY(two),
+    SOLUTIONS_FOR_DAY(three),
+    SOLUTIONS_FOR_DAY(four),
+    SOLUTIONS_FOR_DAY(five),
+    SOLUTIONS_FOR_DAY(six),
+    SOLUTIONS_FOR_DAY(seven),
+    SOLUTIONS_FOR_DAY(eight),
+    SOLUTIONS_FOR_DAY(nine),
+    SOLUTIONS_FOR_DAY(ten),
+    SOLUTIONS_FOR_DAY(eleven),
+    SOLUTIONS_FOR_DAY(twelve),
+    SOLUTIONS_FOR_DAY(thirteen),
+    SOLUTIONS_FOR_DAY(fourteen),
+    SOLUTIONS_FOR_DAY(fifteen),
+    SOLUTIONS_FOR_DAY(sixteen),
+    SOLUTIONS_FOR_DAY(seventeen)};
 
 static int n_solutions = sizeof(solutions) / sizeof(solutions[0]);
 
