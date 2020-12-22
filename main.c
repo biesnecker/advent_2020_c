@@ -27,6 +27,7 @@ FUNCTIONS_FOR_DAY(fourteen);
 FUNCTIONS_FOR_DAY(fifteen);
 FUNCTIONS_FOR_DAY(sixteen);
 FUNCTIONS_FOR_DAY(seventeen);
+FUNCTIONS_FOR_DAY(eighteen);
 
 typedef struct _solution
 {
@@ -64,7 +65,8 @@ static solution solutions[] = {
     SOLUTIONS_FOR_DAY(fourteen),
     SOLUTIONS_FOR_DAY(fifteen),
     SOLUTIONS_FOR_DAY(sixteen),
-    SOLUTIONS_FOR_DAY(seventeen)};
+    SOLUTIONS_FOR_DAY(seventeen),
+    SOLUTIONS_FOR_DAY(eighteen)};
 
 static int n_solutions = sizeof(solutions) / sizeof(solutions[0]);
 
