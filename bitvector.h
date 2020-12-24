@@ -6,14 +6,14 @@
 
 typedef struct _bitvector bitvector;
 
-bitvector *bitvector_new(size_t capacity);
+bitvector* bitvector_new(size_t capacity);
 
-void bitvector_free(bitvector *b);
+void bitvector_free(bitvector* b);
 
-void bitvector_set(bitvector *b, size_t index);
+void bitvector_set(bitvector* b, size_t index);
 
-bool bitvector_check(const bitvector *b, size_t index);
+bool bitvector_check(const bitvector* b, size_t index);
 
-void bitvector_clear(bitvector *b);
+void bitvector_clear(bitvector* b);
 
 #endif

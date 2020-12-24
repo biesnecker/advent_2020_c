@@ -1,17 +1,15 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
 #include "macros.h"
 
-void day_three_solution(FILE *fp)
-{
+void day_three_solution(FILE* fp) {
     char buffer[100] = {0};
 
-    char *first_line = fgets(buffer, 100, fp);
-    if (first_line == NULL)
-    {
+    char* first_line = fgets(buffer, 100, fp);
+    if (first_line == NULL) {
         FLOG("First line was empty?!\n");
         return;
     }
@@ -23,8 +21,7 @@ void day_three_solution(FILE *fp)
     // The line length is really one less than strlen returns, because of the
     // newline character.
     int len = strlen(first_line) - 1;
-    while (fgets(buffer, 100, fp) != NULL)
-    {
+    while (fgets(buffer, 100, fp) != NULL) {
         // Overwrite the newline with a null.
         buffer[len] = '\0';
 
@@ -36,13 +33,11 @@ void day_three_solution(FILE *fp)
     printf("Trees encountered: %d\n", tree_count);
 }
 
-void day_three_b_solution(FILE *fp)
-{
+void day_three_b_solution(FILE* fp) {
     char buffer[100] = {0};
 
-    char *first_line = fgets(buffer, 100, fp);
-    if (first_line == NULL)
-    {
+    char* first_line = fgets(buffer, 100, fp);
+    if (first_line == NULL) {
         FLOG("First line was empty?!\n");
         return;
     }
@@ -58,15 +53,12 @@ void day_three_b_solution(FILE *fp)
     // Use this to determine if we should count this line for slope 5.
     bool tick = false;
 
-    while (fgets(buffer, 100, fp) != NULL)
-    {
+    while (fgets(buffer, 100, fp) != NULL) {
         // Overwrite the newline with a null.
         buffer[len] = '\0';
 
-        for (int i = 0; i < 5; ++i)
-        {
-            if (i == 4 && !tick)
-            {
+        for (int i = 0; i < 5; ++i) {
+            if (i == 4 && !tick) {
                 continue;
             }
             int index = positions[i] % len;
@@ -77,8 +69,7 @@ void day_three_b_solution(FILE *fp)
     }
 
     long solution = 1;
-    for (int i = 0; i < 5; ++i)
-    {
+    for (int i = 0; i < 5; ++i) {
         solution *= tree_counts[i];
     }
 
