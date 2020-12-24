@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "vector.h"
-
 void day_six_solution(FILE* fp) {
     char buffer[50] = {0};
     int total_sum = 0;
